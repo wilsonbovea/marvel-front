@@ -1,0 +1,306 @@
+/* GENERAL CSS */
+.container {
+  max-width: 1230px;
+  margin: 0 auto;
+}
+.modal {
+  display: flex;
+
+  width: 100vw;
+  height: calc(100vh + 100px);
+  border: yellow solid 1px;
+  position: fixed;
+  top: 0px;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+}
+.modal-button {
+  background-color: #f4171f;
+  display: flex;
+  flex-direction: column;
+  height: 350px;
+  width: 270px;
+  margin: 100px auto;
+  justify-content: space-around;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px gray;
+}
+.modal-button button {
+  color: white;
+  background-color: black;
+  border-radius: 5px;
+  height: 50px;
+  box-shadow: 0px 0px 8px white;
+}
+.label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  background-color: black;
+  height: 30px;
+  padding: 5px;
+  box-shadow: 0px 0px 5px white;
+  border-radius: 3px;
+}
+h1 {
+  font-size: 48px;
+  font-weight: bold;
+  color: white;
+}
+.opac-main {
+  background-color: rgba(0, 0, 0, 0.75);
+  height: 100%;
+  overflow: scroll;
+}
+button {
+  border: none;
+  background-color: transparent;
+}
+button:hover {
+  cursor: pointer;
+}
+.link {
+  text-decoration: none;
+  color: black;
+}
+h3 {
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: bold;
+  color: red;
+}
+/* HEADER */
+header {
+  background-image: url("/src/assets/img/marvel-logo.jpg");
+  background-size: cover;
+  background-position: bottom;
+  height: 100px;
+  z-index: 1;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  box-shadow: 0px 5px 5px black, 0px 0px 15px rgb(74, 1, 1), 0px 10px 10px black;
+}
+.opac {
+  background-color: rgba(0, 0, 0, 0.3);
+
+  height: 100%;
+}
+.header-sect {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+.header-img-div {
+  width: 100px;
+  height: 60px;
+}
+.header-img-div img {
+  width: 100%;
+  height: 100%;
+}
+.buttons-header {
+  display: flex;
+  gap: 10px;
+
+  height: 100%;
+  align-items: center;
+}
+.buttons-header .link {
+  background-color: #f4171f;
+  color: white;
+  box-shadow: 0px 8px 10px black;
+  padding: 5px;
+  border-radius: 5px;
+  height: 30px;
+}
+
+/* PAGE COMICS */
+.all-comics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.comics {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border: 1px solid gold;
+  width: 300px;
+  height: 400px;
+  overflow: hidden;
+}
+.comic-img-div {
+  width: 100%;
+  height: 300px;
+}
+.comic-img-div img {
+  width: 100%;
+  min-height: 250px;
+  height: 100%;
+  object-fit: cover;
+}
+/* Comics by id */
+.all-comicId {
+  display: flex;
+  height: calc(100vh - 100px);
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+.comicId {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+
+  width: 40%;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  margin: 50px auto;
+  gap: 30px;
+  border-radius: 15px;
+  padding: 15px;
+  text-align: center;
+}
+
+.comicId-img {
+  width: 100%;
+  min-height: 50%;
+}
+.comicId-img img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+.main-comic {
+  background-image: url("/src/assets/img/comic.jpg");
+}
+/* Page Characters */
+.main-characters {
+  background-image: url("/src/assets/img/character.jpg");
+  background-position: center;
+  background-size: cover;
+
+  height: 100vh;
+  overflow: scroll;
+}
+.all-characters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: calc(100vw - 210px);
+  max-width: 1230px;
+
+  margin: 50px auto;
+}
+.characters {
+  background-color: rgb(0, 0, 0);
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  box-shadow: 0px 0px 10px gray;
+  width: 300px;
+  height: 400px;
+  overflow: hidden;
+  color: white;
+  border-radius: 15px;
+}
+.characters:hover {
+  /* box-shadow: 0px 0px 15px red; */
+  transform: scale(1.2);
+  height: 450px;
+  overflow: initial;
+}
+.comic-img-div {
+  width: 100%;
+  height: 300px;
+}
+.characters-img-div img {
+  width: 100%;
+  height: 250px;
+
+  object-fit: cover;
+}
+/* PAGE COMICS ID CHARACTER */
+.main-comics-characters {
+  background-image: url("/src/assets/img/comic.jpg");
+
+  height: calc(100vh - 100px);
+  overflow: scroll;
+}
+.main-comics-characters h1 {
+  color: gold;
+  text-align: center;
+  padding-top: 100px;
+}
+.all-comics-characters {
+  display: flex;
+  flex-wrap: wrap;
+  /* gap: 10px; */
+  justify-content: space-around;
+  width: calc(100vw - 210px);
+  max-width: 1230px;
+
+  margin: 30px auto;
+}
+.comics-characters {
+  background-color: rgb(0, 0, 0);
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  box-shadow: 0px 0px 10px black;
+  width: calc((100% - 30px) / 4);
+  height: 400px;
+  border: 5px solid rgb(160, 136, 0);
+  color: white;
+  border-radius: 15px;
+  margin-bottom: 10px;
+}
+.comics-characters:hover {
+  box-shadow: 0px 0px 15px red;
+  transform: scale(1.2);
+  height: 450px;
+  overflow: initial;
+}
+.description {
+  overflow: scroll;
+}
+.comic-characters-img {
+  width: 100%;
+  height: 300px;
+}
+.comics-characters-img img {
+  width: 100%;
+  height: 250px;
+  object-fit: contain;
+}
+/* page comics */
+.comics-img {
+  width: 100%;
+  height: 300px;
+}
+.comics-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.comics-all {
+  background-color: rgb(0, 0, 0);
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  box-shadow: 0px 0px 10px gold;
+  width: calc((100% - 30px) / 3);
+  height: 400px;
+  overflow: hidden;
+  color: white;
+  border-radius: 15px;
+}
+.comics-all:hover {
+  box-shadow: 0px 0px 15px gold;
+  transform: scale(1.2);
+  height: 450px;
+}
