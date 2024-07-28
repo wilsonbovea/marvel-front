@@ -58,6 +58,11 @@ h3 {
   background-color: rgba(0, 0, 0, 0.8);
   overflow: hidden;
 }
+.modal span {
+  color: yellow;
+  text-align: center;
+  font-size: 14px;
+}
 .modal-button {
   background-color: #f4171f;
   display: flex;
@@ -89,6 +94,13 @@ h3 {
   padding: 5px;
   box-shadow: 0px 0px 5px white;
   border-radius: 3px;
+}
+.connexion {
+  font-size: 14px;
+  text-align: center;
+}
+.connexion:hover {
+  cursor: pointer;
 }
 /* HEADER */
 header {
@@ -409,4 +421,33 @@ header {
 .opac-fav {
   background-color: rgba(0, 0, 0, 0.75);
   height: 100%;
+}
+@media (max-width: 830px) {
+  .header-sect {
+    padding: 0px 10px;
+    gap: 10px;
+
+    height: 110px;
+  }
+  .opac {
+    position: relative;
+  }
+  header {
+    height: 170px;
+  }
+  .buttons-header {
+    position: absolute;
+    top: 85px;
+    left: 10px;
+    height: 30px;
+  }
+  .affice-page {
+    left: 120px;
+    top: 140px;
+
+    height: 30px;
+  }
+  .all-characters {
+    margin: 50px 35px;
+  }
 }

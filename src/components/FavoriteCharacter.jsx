@@ -11,6 +11,7 @@ const FavoriteCharacter = ({
   setDisplay,
 }) => {
   const [isLoading, setIsLoading] = useState(true);
+
   const onClick = (event) => {
     event.stopPropagation();
     getCookie();
@@ -19,10 +20,10 @@ const FavoriteCharacter = ({
         const fetchData = async () => {
           const { data } = await axios.post(
             "https://site--marvel-backend--7pddggdgmnqf.code.run/favorite/characters",
-            { picture: picture, name: name, id: id },
+            { picture: picture, name: name, id: id, token: cookie },
             {
               headers: {
-                authorization: `Bearer ${cookie}`,
+                Authorization: `Bearer ${cookie}`,
               },
             }
           );
@@ -32,10 +33,10 @@ const FavoriteCharacter = ({
         const fetchData = async () => {
           const { data } = await axios.post(
             "https://site--marvel-backend--7pddggdgmnqf.code.run/favorite/comics",
-            { picture: picture, title: title, id: id },
+            { picture: picture, title: title, id: id, token: cookie },
             {
               headers: {
-                authorization: `Bearer ${cookie}`,
+                Authorization: `Bearer ${cookie}`,
               },
             }
           );

@@ -9,7 +9,9 @@ const Favorites = ({ search, cookie, getCookie }) => {
     getCookie();
     const fetchData = async () => {
       const { data } = await axios.get(
-        "https://site--marvel-backend--7pddggdgmnqf.code.run/favorite/list",
+        "https://site--marvel-backend--7pddggdgmnqf.code.run/favorite/list?" +
+          "token=" +
+          cookie,
         {
           headers: {
             authorization: `Bearer ${cookie}`,

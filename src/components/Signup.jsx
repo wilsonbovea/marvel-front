@@ -20,6 +20,7 @@ const Signup = ({ setDisplay, getCookie }) => {
         "https://site--marvel-backend--7pddggdgmnqf.code.run/signup",
 
         {
+          username: userName,
           email: userEmail,
           password: userPassword,
         }
@@ -28,13 +29,15 @@ const Signup = ({ setDisplay, getCookie }) => {
       // setUserToken(data.token);
       console.log(data);
       Cookies.set("userToken", data.token);
+      setDisplay(0);
       // setConnected(true);
     } catch (error) {
+      console.log(error);
       setErrorMessage(error.response.data.message);
     }
-    // getCookie();
+
     setIsSubmitting(false);
-    setDisplay(0);
+
     getCookie();
   };
   return (
@@ -93,7 +96,7 @@ const Signup = ({ setDisplay, getCookie }) => {
         </label>
         <span>{errorMessage}</span>
         <button disabled={isSubmitting}>S'inscrire</button>
-        <p onClick={() => setDisplay(3)}>
+        <p className="connexion" onClick={() => setDisplay(3)}>
           Tu as déja un compte ? Connecte-toi !
         </p>
       </form>

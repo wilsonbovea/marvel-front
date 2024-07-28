@@ -25,11 +25,8 @@ const Login = ({ setDisplay, getCookie }) => {
         }
       );
 
-      //   setUserToken(data.token);
-
-      //   setConnected(true);
-
       Cookies.set("userToken", data.token);
+      setDisplay(0);
     } catch (error) {
       console.log("Offer page - catch >", error.response);
       setErrorMessage("le mot de passe ou l'e-mail sont incorrects");
@@ -37,7 +34,6 @@ const Login = ({ setDisplay, getCookie }) => {
 
     setIsSubmitting(false);
     getCookie();
-    setDisplay(0);
   };
   return (
     <main
@@ -82,7 +78,7 @@ const Login = ({ setDisplay, getCookie }) => {
         </label>
         <span>{errorMessage}</span>
         <button disabled={isSubmitting}>Se connecter</button>
-        <p onClick={() => setDisplay(2)}>
+        <p className="connexion" onClick={() => setDisplay(2)}>
           Pas encore une compte ? Inscris-toi !
         </p>
       </form>

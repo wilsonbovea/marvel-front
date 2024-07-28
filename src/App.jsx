@@ -22,7 +22,7 @@ function App() {
 
     setCookie(token);
   };
-  console.log(cookie);
+
   return (
     <Router>
       <Header
