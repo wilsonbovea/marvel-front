@@ -1,6 +1,6 @@
 import { useState } from "react";
-
-const UserConnection = ({ setDisplay }) => {
+import Cookies from "js-cookie";
+const UserConnection = ({ setDisplay, cookie, setCookie }) => {
   return (
     <main
       className="modal"
@@ -14,8 +14,29 @@ const UserConnection = ({ setDisplay }) => {
           event.stopPropagation();
         }}
       >
-        <button onClick={() => setDisplay(2)}>S'inscrire</button>
-        <button onClick={() => setDisplayConnect(3)}>Se connecter</button>
+        {!cookie ? (
+          <>
+            <button onClick={() => setDisplay(2)}>S'inscrire</button>
+            <button onClick={() => setDisplay(3)}>Se connecter</button>
+          </>
+        ) : (
+          <button
+            onClick={() => {
+              Cookies.remove("userToken");
+
+              // setUserToken("");
+              setCookie("");
+
+              // if (location.pathname === "/publish") {
+              //   navigate("/");
+              // }
+              window.location.reload();
+              setDisplay(0);
+            }}
+          >
+            Se déconnecter
+          </button>
+        )}
       </div>
     </main>
   );

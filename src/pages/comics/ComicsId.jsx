@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams, NavLink } from "react-router-dom";
 
-const ComicsIdCharacter = () => {
+const ComicsIdCharacter = ({ getCookie }) => {
   const [dataComicsIdCharacter, setDataComicsIdCharacter] = useState([]);
   const [dataCharacter, setDataCharacter] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -24,6 +24,7 @@ const ComicsIdCharacter = () => {
     fetchData();
 
     setIsLoading(false);
+    getCookie();
   }, []);
   return isLoading ? (
     <div>CHARGEMENT EN COURS ...</div>

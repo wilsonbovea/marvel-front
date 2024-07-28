@@ -25,6 +25,8 @@
   justify-content: space-around;
   padding: 15px;
   border-radius: 10px;
+  color: white;
+
   box-shadow: 0px 0px 10px gray;
 }
 .modal-button button {
@@ -84,6 +86,35 @@ header {
   width: 100%;
   box-shadow: 0px 5px 5px black, 0px 0px 15px rgb(74, 1, 1), 0px 10px 10px black;
 }
+.label-search {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  background-color: black;
+  width: 500px;
+  max-width: 500px;
+  min-width: 200px;
+  height: 35px;
+  padding: 5px;
+  box-shadow: 0px 0px 5px white;
+  border-radius: 3px;
+}
+.label-search > input {
+  width: 100%;
+}
+.affice-page {
+  display: flex;
+  color: white;
+  position: absolute;
+  top: 80px;
+  left: 365px;
+  align-items: center;
+  gap: 10px;
+}
+.affice-page input {
+  width: 70px;
+}
 .opac {
   background-color: rgba(0, 0, 0, 0.3);
 
@@ -93,6 +124,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
   height: 100%;
 }
 .header-img-div {

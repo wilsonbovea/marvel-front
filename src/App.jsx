@@ -8,22 +8,75 @@ import ComicsIdCharacter from "./pages/comics/ComicsId";
 import Header from "./components/Header";
 import UserConnection from "./components/UserConnection";
 import Signup from "./components/Signup";
-
+import Login from "./components/Login";
+import Cookies from "js-cookie";
 function App() {
   const [display, setDisplay] = useState(0);
-  console.log(display);
+  const [search, setSearch] = useState("");
+  const [count, setCount] = useState(0);
+  const [page, setPage] = useState(1);
+  const [cookie, setCookie] = useState("");
+  const getCookie = () => {
+    const token = Cookies.get("userToken");
+
+    setCookie(token);
+  };
+  console.log(cookie);
   return (
     <Router>
-      <Header setDisplay={setDisplay} />
+      <Header
+        setDisplay={setDisplay}
+        setSearch={setSearch}
+        count={count}
+        page={page}
+        setPage={setPage}
+      />
       <Routes>
-        <Route path="/" element={<Characters />} />
-        <Route path="/comics" element={<Comics />} />
+        <Route
+          path="/"
+          element={
+            <Characters
+              search={search}
+              setCount={setCount}
+              page={page}
+              getCookie={getCookie}
+            />
+          }
+        />
+        <Route
+          path="/comics"
+          element={
+            <Comics
+              search={search}
+              setCount={setCount}
+              page={page}
+              getCookie={getCookie}
+            />
+          }
+        />
 
-        <Route path="/comics/:id" element={<ComicsIdCharacter />} />
-        <Route path="/comic/:comicId" element={<ComicsIdComic />} />
+        <Route
+          path="/comics/:id"
+          element={<ComicsIdCharacter />}
+          getCookie={getCookie}
+        />
+        <Route
+          path="/comic/:comicId"
+          element={<ComicsIdComic />}
+          getCookie={getCookie}
+        />
       </Routes>
-      {display === 1 && <UserConnection setDisplay={setDisplay} />}
-      {display === 2 && <Signup setDisplay={setDisplay} />}
+      {display === 1 && (
+        <UserConnection
+          setDisplay={setDisplay}
+          cookie={cookie}
+          setCookie={setCookie}
+        />
+      )}
+      {display === 2 && (
+        <Signup setDisplay={setDisplay} getCookie={getCookie} />
+      )}
+      {display === 3 && <Login setDisplay={setDisplay} getCookie={getCookie} />}
     </Router>
   );
 }

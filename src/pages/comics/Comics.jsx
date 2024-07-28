@@ -1,22 +1,34 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-const Comics = () => {
+const Comics = ({ search, setCount, page, getCookie }) => {
   const [dataComics, setDataComics] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
+      let filters = "";
+
+      if (search) {
+        filters = filters + ("title=" + search);
+      }
+      if (page && search) {
+        filters = filters + ("&page=" + page);
+      } else if (page && !search) {
+        filters = filters + ("page=" + page);
+      }
       const { data } = await axios.get(
-        "https://site--marvel-backend--7pddggdgmnqf.code.run/comics"
+        "https://site--marvel-backend--7pddggdgmnqf.code.run/comics?" + filters
       );
 
+      setCount(Math.ceil(data.count / 100));
       setDataComics(data.results);
     };
 
     fetchData();
     setIsLoading(false);
-  }, []);
+    getCookie();
+  }, [search, page]);
   return isLoading ? (
     <div>CHARGEMENT EN COURS ...</div>
   ) : (

@@ -1,22 +1,35 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-const Characters = () => {
+const Characters = ({ search, setCount, page, getCookie }) => {
   const [dataCharacters, setDataCharacters] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await axios.get(
-        "https://site--marvel-backend--7pddggdgmnqf.code.run/characters"
-      );
+      let filters = "";
 
+      if (search) {
+        filters = filters + ("name=" + search);
+      }
+      if (page && search) {
+        filters = filters + ("&page=" + page);
+      } else if (page && !search) {
+        filters = filters + ("page=" + page);
+        console.log(filters);
+      }
+      const { data } = await axios.get(
+        "https://site--marvel-backend--7pddggdgmnqf.code.run/characters?" +
+          filters
+      );
+      setCount(Math.ceil(data.count / 100));
       setDataCharacters(data.results);
     };
 
     fetchData();
     setIsLoading(false);
-  }, []);
+    getCookie();
+  }, [page, search]);
   return isLoading ? (
     <div>CHARGEMENT EN COURS ...</div>
   ) : (

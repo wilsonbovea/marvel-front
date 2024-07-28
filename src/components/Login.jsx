@@ -1,23 +1,23 @@
-import { useState } from "react";
 import axios from "axios";
+import { useState } from "react";
 import Cookies from "js-cookie";
-const Signup = ({ setDisplay, getCookie }) => {
-  const [userEmail, setUserEmail] = useState("");
-  const [userName, setUserName] = useState("");
-  const [userPassword, setUserPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
+const Login = ({ setDisplay, getCookie }) => {
+  const [userEmail, setUserEmail] = useState("");
+  const [userPassword, setUserPassword] = useState("");
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const onSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      if (!userEmail || !userPassword || !userName) {
+      if (!userEmail || !userPassword) {
         return setErrorMessage("Veuillez remplir tous les champs");
       }
       setIsSubmitting(true);
       const { data } = await axios.post(
-        "https://site--marvel-backend--7pddggdgmnqf.code.run/signup",
+        "https://site--marvel-backend--7pddggdgmnqf.code.run/login",
 
         {
           email: userEmail,
@@ -25,17 +25,19 @@ const Signup = ({ setDisplay, getCookie }) => {
         }
       );
 
-      // setUserToken(data.token);
-      console.log(data);
+      //   setUserToken(data.token);
+
+      //   setConnected(true);
+
       Cookies.set("userToken", data.token);
-      // setConnected(true);
     } catch (error) {
-      setErrorMessage(error.response.data.message);
+      console.log("Offer page - catch >", error.response);
+      setErrorMessage("le mot de passe ou l'e-mail sont incorrects");
     }
-    // getCookie();
+
     setIsSubmitting(false);
-    setDisplay(0);
     getCookie();
+    setDisplay(0);
   };
   return (
     <main
@@ -51,19 +53,6 @@ const Signup = ({ setDisplay, getCookie }) => {
         }}
         onSubmit={onSubmit}
       >
-        <label className="label" htmlFor="username">
-          <p>Username: </p>
-          <input
-            value={userName}
-            type="text"
-            placeholder="username"
-            id="username"
-            name="username"
-            onChange={(event) => {
-              setUserName(event.target.value);
-            }}
-          />
-        </label>
         <label className="label" htmlFor="email">
           <p>Email: </p>
           <input
@@ -92,12 +81,12 @@ const Signup = ({ setDisplay, getCookie }) => {
           />
         </label>
         <span>{errorMessage}</span>
-        <button disabled={isSubmitting}>S'inscrire</button>
-        <p onClick={() => setDisplay(3)}>
-          Tu as déja un compte ? Connecte-toi !
+        <button disabled={isSubmitting}>Se connecter</button>
+        <p onClick={() => setDisplay(2)}>
+          Pas encore une compte ? Inscris-toi !
         </p>
       </form>
     </main>
   );
 };
-export default Signup;
+export default Login;
