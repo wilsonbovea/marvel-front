@@ -32,20 +32,19 @@ const ComicsIdComic = ({ getCookie, cookie, setDisplay }) => {
   ) : (
     <main className="main-comic">
       <section className="all-comicId">
-        <div key={dataComicsIdComic._id} className="comicId">
+        <div key={dataComicsIdComic._id} className="comicId  relative">
           <div className="comicId-img">
-            <div className="relative">
-              <img src={urlImg} alt="" />
-              <FavoriteCharacter
-                getCookie={getCookie}
-                picture={urlImg}
-                title={dataComicsIdComic.title}
-                id={dataComicsIdComic._id}
-                cookie={cookie}
-                setDisplay={setDisplay}
-              />
-            </div>
+            <img src={urlImg} alt="" />
+            <FavoriteCharacter
+              getCookie={getCookie}
+              picture={urlImg}
+              title={dataComicsIdComic.title}
+              id={dataComicsIdComic._id}
+              cookie={cookie}
+              setDisplay={setDisplay}
+            />
           </div>
+
           <div className="description-comic">
             <h3>{dataComicsIdComic.title}</h3>
             <p>{dataComicsIdComic.description}</p>
