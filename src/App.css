@@ -525,31 +525,7 @@ header {
   .retour {
     display: none;
   }
+  .label input {
+    width: 130px;
+  }
 }
-/* .comics-img {
-  width: 100%;
-  height: 300px;
-}
-.comics-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-.comics-all {
-  background-color: rgb(0, 0, 0);
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  box-shadow: 0px 0px 5px gold;
-  width: 300px;
-  height: 400px;
-  overflow: hidden;
-  color: white;
-  border-radius: 15px;
-  border: solid 5px #a08801;
-}
-.comics-all:hover {
-  box-shadow: 0px 0px 15px gold;
-
-  height: 450px;
-} */
