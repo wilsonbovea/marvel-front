@@ -65,7 +65,8 @@ h3 {
   position: absolute;
   top: 15px;
   right: 15px;
-  width: 30px;
+  width: 40px;
+  height: 30px;
   display: flex;
   justify-content: center;
   background-color: #f4171f;
@@ -481,6 +482,9 @@ header {
     width: 150px;
     height: 300px;
   }
+  .characters:hover {
+    height: 300px;
+  }
   .characters-img-div {
     height: 200px;
   }
@@ -505,6 +509,13 @@ header {
     width: 150px;
     height: 305px;
   }
+  .comics-all:hover {
+    height: 305px;
+  }
+  .comics-characters:hover {
+    height: 350px;
+    transform: none;
+  }
   .display-hide-2 {
     display: none;
   }
@@ -519,6 +530,9 @@ header {
     border-radius: 10px;
     text-align: center;
     padding-top: 5px;
+  }
+  .relative:hover {
+    transform: none;
   }
 }
 @media (max-width: 400px) {
