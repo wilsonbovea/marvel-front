@@ -31,7 +31,7 @@ const Comics = ({ search, setCount, page, getCookie, cookie, setDisplay }) => {
     getCookie();
   }, [search, page]);
   return isLoading ? (
-    <div>CHARGEMENT EN COURS ...</div>
+    <div class="loader"></div>
   ) : (
     <main className="main-characters">
       <div className="opac-main">

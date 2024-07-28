@@ -10,8 +10,6 @@ const FavoriteCharacter = ({
   title,
   setDisplay,
 }) => {
-  const [isLoading, setIsLoading] = useState(true);
-
   const onClick = (event) => {
     event.stopPropagation();
     getCookie();

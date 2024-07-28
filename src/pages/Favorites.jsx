@@ -27,7 +27,7 @@ const Favorites = ({ search, cookie, getCookie }) => {
     setIsLoading(false);
   }, []);
   return isLoading ? (
-    <p>CHARGEMENT</p>
+    <div class="loader"></div>
   ) : (
     <main className="main-characters">
       <div className="opac-fav">
