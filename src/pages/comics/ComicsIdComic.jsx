@@ -7,7 +7,9 @@ const ComicsIdComic = () => {
   const [urlImg, setUrlImg] = useState("");
   const idComic = useParams();
 
-  console.log(dataComicsIdComic, urlImg);
+  const retour = () => {
+    window.history.back();
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,11 +34,14 @@ const ComicsIdComic = () => {
           <div className="comicId-img">
             <img src={urlImg} alt="" />
           </div>
-          <div>
+          <div className="description-comic">
             <h3>{dataComicsIdComic.title}</h3>
             <p>{dataComicsIdComic.description}</p>
           </div>
         </div>
+        <button className="retour" onClick={() => retour()}>
+          Retourner
+        </button>
       </section>
     </main>
   );

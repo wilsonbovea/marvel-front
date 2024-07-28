@@ -16,7 +16,7 @@ const ComicsIdCharacter = () => {
         "https://site--marvel-backend--7pddggdgmnqf.code.run/comics/" +
           idCharacter.id
       );
-      console.log(data.comics);
+
       setDataComicsIdCharacter(data.comics);
       setDataCharacter(data);
     };
@@ -38,6 +38,8 @@ const ComicsIdCharacter = () => {
               <NavLink
                 className="comics-characters  link"
                 key={comicsCharacter._id}
+                to={"/comic/" + comicsCharacter._id}
+                // onClick={() => console.log(comicsCharacter._id)}
               >
                 <div className="comics-characters-img">
                   <img
@@ -50,8 +52,7 @@ const ComicsIdCharacter = () => {
                   />
                 </div>
                 <div className="description">
-                  <h3>{comicsCharacter.name}</h3>
-                  <p>{comicsCharacter.description}</p>
+                  <p>DESCRIPTION</p>
                 </div>
               </NavLink>
             );

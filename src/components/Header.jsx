@@ -19,7 +19,7 @@ const Header = ({ setDisplay }) => {
             </Link>
             <Link className="link">Favoris</Link>
             <button onClick={() => setDisplay(1)} className="link">
-              Connection
+              Connexion
             </button>
           </div>
         </section>

@@ -30,7 +30,7 @@ const Characters = () => {
                 className="characters link"
                 key={character._id}
               >
-                <div className="comic-img-div">
+                <div className="characters-img-div">
                   <img
                     src={
                       character.thumbnail.path +
