@@ -1,6 +1,7 @@
 /* GENERAL CSS */
 
 .loader {
+  margin: 200px auto;
   --d: 22px;
   width: 4px;
   height: 4px;

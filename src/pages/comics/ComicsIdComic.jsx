@@ -28,7 +28,7 @@ const ComicsIdComic = ({ getCookie, cookie, setDisplay }) => {
     getCookie();
   }, []);
   return isLoading ? (
-    <div class="loader"></div>
+    <div className="loader"></div>
   ) : (
     <main className="main-comic">
       <section className="all-comicId">

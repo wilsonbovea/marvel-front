@@ -44,8 +44,6 @@ const FavoriteCharacter = ({
     } else {
       return setDisplay(3);
     }
-
-    setIsLoading(false);
   };
   return (
     <div className="add-fav" onClick={onClick}>

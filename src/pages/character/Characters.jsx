@@ -39,7 +39,7 @@ const Characters = ({
     getCookie();
   }, [page, search]);
   return isLoading ? (
-    <div class="loader"></div>
+    <div className="loader"></div>
   ) : (
     <main className="main-characters">
       <div className="opac-main">

@@ -27,7 +27,7 @@ const ComicsIdCharacter = ({ getCookie }) => {
     getCookie();
   }, []);
   return isLoading ? (
-    <div class="loader"></div>
+    <div className="loader"></div>
   ) : (
     <main className="main-comics-characters">
       <div className="opac-main">
