@@ -1,6 +1,11 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 const UserConnection = ({ setDisplay, cookie, setCookie }) => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  console.log(location.pathname);
   return (
     <main
       className="modal"
@@ -27,9 +32,9 @@ const UserConnection = ({ setDisplay, cookie, setCookie }) => {
               // setUserToken("");
               setCookie("");
 
-              // if (location.pathname === "/publish") {
-              //   navigate("/");
-              // }
+              if (location.pathname === "/favorites") {
+                navigate("/");
+              }
               window.location.reload();
               setDisplay(0);
             }}

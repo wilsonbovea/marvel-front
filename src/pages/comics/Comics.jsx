@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-const Comics = ({ search, setCount, page, getCookie }) => {
+import FavoriteCharacter from "../../components/FavoriteCharacter";
+const Comics = ({ search, setCount, page, getCookie, cookie, setDisplay }) => {
   const [dataComics, setDataComics] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -37,24 +38,37 @@ const Comics = ({ search, setCount, page, getCookie }) => {
         <section className="all-characters container">
           {dataComics.map((comicsDetails) => {
             return (
-              <Link
-                to={"/comic/" + comicsDetails._id}
-                key={comicsDetails._id}
-                className="comics-all link"
-              >
-                <div className="comics-img">
-                  <img
-                    src={
-                      comicsDetails.thumbnail.path +
-                      "." +
-                      comicsDetails.thumbnail.extension
-                    }
-                    alt={comicsDetails.title}
-                  />
-                </div>
-                <h3>{comicsDetails.title}</h3>
-                <p>{comicsDetails.description}</p>
-              </Link>
+              <div className="relative" key={comicsDetails._id}>
+                <Link
+                  to={"/comic/" + comicsDetails._id}
+                  className="comics-all link"
+                >
+                  <div className="comics-img">
+                    <img
+                      src={
+                        comicsDetails.thumbnail.path +
+                        "." +
+                        comicsDetails.thumbnail.extension
+                      }
+                      alt={comicsDetails.title}
+                    />
+                  </div>
+                  <h3>{comicsDetails.title}</h3>
+                  <p>{comicsDetails.description}</p>
+                </Link>
+                <FavoriteCharacter
+                  getCookie={getCookie}
+                  picture={
+                    comicsDetails.thumbnail.path +
+                    "." +
+                    comicsDetails.thumbnail.extension
+                  }
+                  title={comicsDetails.title}
+                  id={comicsDetails._id}
+                  cookie={cookie}
+                  setDisplay={setDisplay}
+                />
+              </div>
             );
           })}
         </section>

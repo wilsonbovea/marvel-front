@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-
-const Header = ({ setDisplay, setSearch, count, page, setPage }) => {
+import { useLocation } from "react-router-dom";
+const Header = ({ setDisplay, setSearch, count, page, setPage, cookie }) => {
+  const location = useLocation();
   return (
     <header>
       <div className="opac">
@@ -27,28 +28,39 @@ const Header = ({ setDisplay, setSearch, count, page, setPage }) => {
             <Link to={"/comics"} className="link">
               Comics
             </Link>
-            <Link className="link">Favoris</Link>
+            {cookie !== undefined ? (
+              <Link to={"/favorites"} className="link">
+                Favoris
+              </Link>
+            ) : (
+              <Link onClick={() => setDisplay(3)} className="link">
+                Favoris
+              </Link>
+            )}
+
             <button onClick={() => setDisplay(1)} className="link">
               Connexion
             </button>
           </div>
-          <div className="affice-page">
-            <p>PAGE :</p>
-            {count === 1 ? (
-              <p>1</p>
-            ) : (
-              <input
-                min={1}
-                type="number"
-                defaultValue={page || 1}
-                onChange={(event) => {
-                  setPage(event.target.value);
-                }}
-              />
-            )}
+          {location.pathname === "/favorites" ? null : (
+            <div className="affice-page">
+              <p>PAGE :</p>
+              {count === 1 ? (
+                <p>1</p>
+              ) : (
+                <input
+                  min={1}
+                  type="number"
+                  defaultValue={page || 1}
+                  onChange={(event) => {
+                    setPage(event.target.value);
+                  }}
+                />
+              )}
 
-            <p>/ {count}</p>
-          </div>
+              <p>/ {count}</p>
+            </div>
+          )}
         </section>
       </div>
     </header>

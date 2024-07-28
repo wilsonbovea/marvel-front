@@ -10,6 +10,7 @@ import UserConnection from "./components/UserConnection";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import Cookies from "js-cookie";
+import Favorites from "./pages/Favorites";
 function App() {
   const [display, setDisplay] = useState(0);
   const [search, setSearch] = useState("");
@@ -30,6 +31,7 @@ function App() {
         count={count}
         page={page}
         setPage={setPage}
+        cookie={cookie}
       />
       <Routes>
         <Route
@@ -40,6 +42,8 @@ function App() {
               setCount={setCount}
               page={page}
               getCookie={getCookie}
+              cookie={cookie}
+              setDisplay={setDisplay}
             />
           }
         />
@@ -51,19 +55,31 @@ function App() {
               setCount={setCount}
               page={page}
               getCookie={getCookie}
+              cookie={cookie}
+              setDisplay={setDisplay}
             />
           }
         />
 
         <Route
           path="/comics/:id"
-          element={<ComicsIdCharacter />}
-          getCookie={getCookie}
+          element={<ComicsIdCharacter getCookie={getCookie} />}
         />
         <Route
           path="/comic/:comicId"
-          element={<ComicsIdComic />}
-          getCookie={getCookie}
+          element={<ComicsIdComic getCookie={getCookie} />}
+        />
+        <Route
+          path="/favorites"
+          element={
+            <Favorites
+              search={search}
+              setCount={setCount}
+              page={page}
+              getCookie={getCookie}
+              cookie={cookie}
+            />
+          }
         />
       </Routes>
       {display === 1 && (

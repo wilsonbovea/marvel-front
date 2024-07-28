@@ -3,6 +3,49 @@
   max-width: 1230px;
   margin: 0 auto;
 }
+
+h1 {
+  font-size: 48px;
+  font-weight: bold;
+  color: white;
+}
+h2 {
+  font-size: 24px;
+  color: gold;
+  width: 110px;
+}
+.opac-main {
+  background-color: rgba(0, 0, 0, 0.75);
+  height: 100%;
+  overflow: scroll;
+}
+button {
+  border: none;
+  background-color: transparent;
+}
+button:hover {
+  cursor: pointer;
+}
+.link {
+  text-decoration: none;
+  color: black;
+}
+h3 {
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: bold;
+  color: red;
+}
+/* COMPONENTS ---------- */
+.add-fav {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  border-radius: 100%;
+  background-color: #f4171f;
+  color: white;
+}
 .modal {
   display: flex;
 
@@ -46,33 +89,6 @@
   padding: 5px;
   box-shadow: 0px 0px 5px white;
   border-radius: 3px;
-}
-h1 {
-  font-size: 48px;
-  font-weight: bold;
-  color: white;
-}
-.opac-main {
-  background-color: rgba(0, 0, 0, 0.75);
-  height: 100%;
-  overflow: scroll;
-}
-button {
-  border: none;
-  background-color: transparent;
-}
-button:hover {
-  cursor: pointer;
-}
-.link {
-  text-decoration: none;
-  color: black;
-}
-h3 {
-  font-size: 18px;
-  line-height: 26px;
-  font-weight: bold;
-  color: red;
 }
 /* HEADER */
 header {
@@ -228,6 +244,13 @@ header {
 
   margin: 50px auto;
 }
+.relative {
+  position: relative;
+}
+.relative:hover {
+  transform: scale(1.1);
+  z-index: 1;
+}
 .characters {
   background-color: rgb(0, 0, 0);
   display: flex;
@@ -243,7 +266,7 @@ header {
 }
 .characters:hover {
   box-shadow: 0px 0px 15px gold;
-  transform: scale(1.2);
+  /* transform: scale(1.2); */
   height: 450px;
   overflow: initial;
 }
@@ -345,6 +368,45 @@ header {
 }
 .comics-all:hover {
   box-shadow: 0px 0px 15px gold;
-  transform: scale(1.2);
+
   height: 450px;
+}
+/* favorite */
+.all-fav-character {
+  display: flex;
+  height: 380px;
+
+  overflow: scroll;
+  gap: 20px;
+  align-items: center;
+  scrollbar-width: none;
+  /* padding-top: 30px; */
+}
+.img-fav-character {
+  height: 200px;
+  width: 200px;
+}
+.img-fav-character img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+}
+.fav-character {
+  height: 90%;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  gap: 10px;
+  background-color: gray;
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0px 0px 10px #a08801;
+  flex-shrink: 0;
+}
+.opac-fav {
+  background-color: rgba(0, 0, 0, 0.75);
+  height: 100%;
 }

@@ -1,7 +1,15 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-const Characters = ({ search, setCount, page, getCookie }) => {
+import FavoriteCharacter from "../../components/FavoriteCharacter";
+const Characters = ({
+  search,
+  setCount,
+  page,
+  getCookie,
+  cookie,
+  setDisplay,
+}) => {
   const [dataCharacters, setDataCharacters] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -38,26 +46,39 @@ const Characters = ({ search, setCount, page, getCookie }) => {
         <section className="all-characters">
           {dataCharacters.map((character) => {
             return (
-              <NavLink
-                to={"/comics/" + character._id}
-                className="characters link"
-                key={character._id}
-              >
-                <div className="characters-img-div">
-                  <img
-                    src={
-                      character.thumbnail.path +
-                      "." +
-                      character.thumbnail.extension
-                    }
-                    alt={"character " + character.name}
-                  />
-                </div>
-                <div>
-                  <h3>{character.name}</h3>
-                  <p>{character.description}</p>
-                </div>
-              </NavLink>
+              <div className="relative" key={character._id}>
+                <NavLink
+                  to={"/comics/" + character._id}
+                  className="characters link"
+                >
+                  <div className="characters-img-div">
+                    <img
+                      src={
+                        character.thumbnail.path +
+                        "." +
+                        character.thumbnail.extension
+                      }
+                      alt={"character " + character.name}
+                    />
+                  </div>
+                  <div>
+                    <h3>{character.name}</h3>
+                    <p>{character.description}</p>
+                  </div>
+                </NavLink>
+                <FavoriteCharacter
+                  getCookie={getCookie}
+                  picture={
+                    character.thumbnail.path +
+                    "." +
+                    character.thumbnail.extension
+                  }
+                  name={character.name}
+                  id={character._id}
+                  cookie={cookie}
+                  setDisplay={setDisplay}
+                />
+              </div>
             );
           })}
         </section>

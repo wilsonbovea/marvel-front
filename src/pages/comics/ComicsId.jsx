@@ -40,7 +40,6 @@ const ComicsIdCharacter = ({ getCookie }) => {
                 className="comics-characters  link"
                 key={comicsCharacter._id}
                 to={"/comic/" + comicsCharacter._id}
-                // onClick={() => console.log(comicsCharacter._id)}
               >
                 <div className="comics-characters-img">
                   <img
