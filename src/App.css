@@ -3,7 +3,9 @@
   max-width: 1230px;
   margin: 0 auto;
 }
-
+.display-hide {
+  display: none;
+}
 h1 {
   font-size: 48px;
   font-weight: bold;
@@ -39,12 +41,15 @@ h3 {
 /* COMPONENTS ---------- */
 .add-fav {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 15px;
+  right: 15px;
   width: 30px;
-  border-radius: 100%;
+  display: flex;
+  justify-content: center;
   background-color: #f4171f;
+  border: gold 1px solid;
   color: white;
+  box-shadow: 0px 0px 5px gold;
 }
 .modal {
   display: flex;
@@ -280,7 +285,6 @@ header {
   box-shadow: 0px 0px 15px gold;
   /* transform: scale(1.2); */
   height: 450px;
-  overflow: initial;
 }
 .characters-img-div {
   width: 100%;
@@ -321,7 +325,7 @@ header {
   flex-direction: column;
   padding: 10px;
   box-shadow: 0px 0px 10px black;
-  /* width: calc((100% - 30px) / 4); */
+
   width: 300px;
   height: 450px;
   border: 5px solid #a08801;
@@ -449,5 +453,81 @@ header {
   }
   .all-characters {
     margin: 50px 35px;
+    width: 100vw;
+  }
+  .characters {
+    width: 150px;
+    height: 300px;
+  }
+  .characters-img-div {
+    height: 200px;
+  }
+  .characters-img-div img {
+    height: 100%;
+    min-height: 150px;
+  }
+  .all-comics-characters {
+    width: 100vw;
+  }
+  .comics-characters {
+    width: 150px;
+    height: 350px;
+  }
+  .comics-characters-img img {
+    height: 290px;
+  }
+  .comics-img {
+    height: 200px;
+  }
+  .comics-all {
+    width: 150px;
+    height: 305px;
+  }
+  .display-hide-2 {
+    display: none;
+  }
+  .display-hide {
+    display: initial;
+    width: 100%;
+    height: 18px;
+    background-color: #a08801;
+    position: absolute;
+    bottom: 3px;
+    left: 0px;
+    border-radius: 10px;
+    text-align: center;
+    padding-top: 5px;
   }
 }
+@media (max-width: 400px) {
+  .retour {
+    display: none;
+  }
+}
+/* .comics-img {
+  width: 100%;
+  height: 300px;
+}
+.comics-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.comics-all {
+  background-color: rgb(0, 0, 0);
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  box-shadow: 0px 0px 5px gold;
+  width: 300px;
+  height: 400px;
+  overflow: hidden;
+  color: white;
+  border-radius: 15px;
+  border: solid 5px #a08801;
+}
+.comics-all:hover {
+  box-shadow: 0px 0px 15px gold;
+
+  height: 450px;
+} */

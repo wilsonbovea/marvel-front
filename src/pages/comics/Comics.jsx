@@ -54,7 +54,10 @@ const Comics = ({ search, setCount, page, getCookie, cookie, setDisplay }) => {
                     />
                   </div>
                   <h3>{comicsDetails.title}</h3>
-                  <p>{comicsDetails.description}</p>
+                  <p className="display-hide-2">{comicsDetails.description}</p>
+                  <div className="display-hide">
+                    <p>DESCRIPTION</p>
+                  </div>
                 </Link>
                 <FavoriteCharacter
                   getCookie={getCookie}

@@ -67,7 +67,13 @@ function App() {
         />
         <Route
           path="/comic/:comicId"
-          element={<ComicsIdComic getCookie={getCookie} />}
+          element={
+            <ComicsIdComic
+              getCookie={getCookie}
+              cookie={cookie}
+              setDisplay={setDisplay}
+            />
+          }
         />
         <Route
           path="/favorites"

@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-const ComicsIdComic = ({ getCookie }) => {
+import FavoriteCharacter from "../../components/FavoriteCharacter";
+const ComicsIdComic = ({ getCookie, cookie, setDisplay }) => {
   const [dataComicsIdComic, setDataComicsIdComic] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [urlImg, setUrlImg] = useState("");
@@ -33,7 +34,17 @@ const ComicsIdComic = ({ getCookie }) => {
       <section className="all-comicId">
         <div key={dataComicsIdComic._id} className="comicId">
           <div className="comicId-img">
-            <img src={urlImg} alt="" />
+            <div className="relative">
+              <img src={urlImg} alt="" />
+              <FavoriteCharacter
+                getCookie={getCookie}
+                picture={urlImg}
+                title={dataComicsIdComic.title}
+                id={dataComicsIdComic._id}
+                cookie={cookie}
+                setDisplay={setDisplay}
+              />
+            </div>
           </div>
           <div className="description-comic">
             <h3>{dataComicsIdComic.title}</h3>
