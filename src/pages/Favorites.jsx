@@ -4,7 +4,7 @@ const Favorites = ({ search, cookie, getCookie }) => {
   const [dataFavoritesCharacter, setDataFavoritesCharacter] = useState([]);
   const [dataFavoritesComic, setDataFavoritesComic] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  console.log(dataFavoritesComic);
+
   useEffect(() => {
     getCookie();
     const fetchData = async () => {
@@ -25,7 +25,7 @@ const Favorites = ({ search, cookie, getCookie }) => {
 
     fetchData();
     setIsLoading(false);
-  }, []);
+  }, [cookie]);
   return isLoading ? (
     <div className="loader"></div>
   ) : (

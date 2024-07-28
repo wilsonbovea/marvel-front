@@ -24,7 +24,6 @@ const Characters = ({
         filters = filters + ("&page=" + page);
       } else if (page && !search) {
         filters = filters + ("page=" + page);
-        console.log(filters);
       }
       const { data } = await axios.get(
         "https://site--marvel-backend--7pddggdgmnqf.code.run/characters?" +
@@ -37,7 +36,7 @@ const Characters = ({
     fetchData();
     setIsLoading(false);
     getCookie();
-  }, [page, search]);
+  }, [page, search, cookie]);
   return isLoading ? (
     <div className="loader"></div>
   ) : (

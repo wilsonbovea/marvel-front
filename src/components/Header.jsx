@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 const Header = ({ setDisplay, setSearch, count, page, setPage, cookie }) => {
   const location = useLocation();
 
-  console.log(location);
   return (
     <header>
       <div className="opac">

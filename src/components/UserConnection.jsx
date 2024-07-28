@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 const UserConnection = ({ setDisplay, cookie, setCookie }) => {
   const location = useLocation();
   const navigate = useNavigate();
-  console.log(location.pathname);
+
   return (
     <main
       className="modal"

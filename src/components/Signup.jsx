@@ -27,7 +27,7 @@ const Signup = ({ setDisplay, getCookie }) => {
       );
 
       // setUserToken(data.token);
-      console.log(data);
+
       Cookies.set("userToken", data.token);
       setDisplay(0);
       // setConnected(true);

@@ -1,5 +1,6 @@
+import { useState } from "react";
+
 import axios from "axios";
-import { useState, useEffect } from "react";
 
 const FavoriteCharacter = ({
   cookie,
@@ -10,12 +11,15 @@ const FavoriteCharacter = ({
   title,
   setDisplay,
 }) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const onClick = (event) => {
     event.stopPropagation();
     getCookie();
+
     if (cookie) {
       if (name) {
-        const fetchData = async () => {
+        getCookie();
+        const fetchdata = async () => {
           const { data } = await axios.post(
             "https://site--marvel-backend--7pddggdgmnqf.code.run/favorite/characters",
             { picture: picture, name: name, id: id, token: cookie },
@@ -26,9 +30,10 @@ const FavoriteCharacter = ({
             }
           );
         };
-        fetchData();
+        fetchdata();
       } else {
-        const fetchData = async () => {
+        const fetchdata = async () => {
+          getCookie();
           const { data } = await axios.post(
             "https://site--marvel-backend--7pddggdgmnqf.code.run/favorite/comics",
             { picture: picture, title: title, id: id, token: cookie },
@@ -39,10 +44,10 @@ const FavoriteCharacter = ({
             }
           );
         };
-        fetchData();
+        fetchdata();
       }
     } else {
-      return setDisplay(3);
+      setDisplay(3);
     }
   };
   return (
@@ -51,4 +56,5 @@ const FavoriteCharacter = ({
     </div>
   );
 };
+
 export default FavoriteCharacter;
