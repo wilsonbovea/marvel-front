@@ -2,7 +2,19 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import FavoriteCharacter from "../../components/FavoriteCharacter";
-const Comics = ({ search, setCount, page, getCookie, cookie, setDisplay }) => {
+const Comics = ({
+  search,
+  setCount,
+  page,
+  getCookie,
+  cookie,
+  setDisplay,
+  tabCharacterid,
+  tabComicid,
+  setPage,
+  count,
+  setFav,
+}) => {
   const [dataComics, setDataComics] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -25,11 +37,13 @@ const Comics = ({ search, setCount, page, getCookie, cookie, setDisplay }) => {
       setCount(Math.ceil(data.count / 100));
       setDataComics(data.results);
     };
-
+    if (count < page) {
+      setPage(1);
+    }
     fetchData();
     setIsLoading(false);
     getCookie();
-  }, [search, page]);
+  }, [search, page, count]);
   return isLoading ? (
     <div className="loader"></div>
   ) : (
@@ -61,6 +75,7 @@ const Comics = ({ search, setCount, page, getCookie, cookie, setDisplay }) => {
                 </Link>
                 <FavoriteCharacter
                   getCookie={getCookie}
+                  setFav={setFav}
                   picture={
                     comicsDetails.thumbnail.path +
                     "." +
@@ -70,6 +85,8 @@ const Comics = ({ search, setCount, page, getCookie, cookie, setDisplay }) => {
                   id={comicsDetails._id}
                   cookie={cookie}
                   setDisplay={setDisplay}
+                  tabCharacterid={tabCharacterid}
+                  tabComicid={tabComicid}
                 />
               </div>
             );

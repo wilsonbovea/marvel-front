@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
+import axios from "axios";
 import Comics from "./pages/comics/Comics";
 import Characters from "./pages/character/Characters";
 import ComicsIdComic from "./pages/comics/ComicsIdComic";
@@ -12,17 +13,54 @@ import Login from "./components/Login";
 import Cookies from "js-cookie";
 import Favorites from "./pages/Favorites";
 function App() {
+  const [dataFavoritesCharacter, setDataFavoritesCharacter] = useState([]);
+  const [dataFavoritesComic, setDataFavoritesComic] = useState([]);
   const [display, setDisplay] = useState(0);
   const [search, setSearch] = useState("");
   const [count, setCount] = useState(0);
+  const [fav, setFav] = useState("");
   const [page, setPage] = useState(1);
   const [cookie, setCookie] = useState("");
+  const [tabCharacterid, setTabCharacterid] = useState([]);
+  const [tabComicid, setTabComicid] = useState([]);
   const getCookie = () => {
     const token = Cookies.get("userToken");
 
     setCookie(token);
   };
+  const [isLoading, setIsLoading] = useState(true);
+  console.log(tabCharacterid);
+  useEffect(() => {
+    getCookie();
+    const fetchData = async () => {
+      const { data } = await axios.get(
+        "https://site--marvel-backend--7pddggdgmnqf.code.run/favorite/list?" +
+          "token=" +
+          cookie,
+        {
+          headers: {
+            authorization: `Bearer ${cookie}`,
+          },
+        }
+      );
 
+      setDataFavoritesCharacter(data.character);
+      setDataFavoritesComic(data.comic);
+
+      data.character.map((event) => {
+        tabCharacterid.push(event.idCharacter);
+      });
+
+      setTabCharacterid(tabCharacterid);
+      data.comic.map((event) => {
+        tabComicid.push(event.idComic);
+      });
+      setTabComicid(tabComicid);
+    };
+
+    fetchData();
+    setIsLoading(false);
+  }, [cookie, fav]);
   return (
     <Router>
       <Header
@@ -39,11 +77,16 @@ function App() {
           element={
             <Characters
               search={search}
+              setFav={setFav}
+              setPage={setPage}
               setCount={setCount}
               page={page}
               getCookie={getCookie}
               cookie={cookie}
               setDisplay={setDisplay}
+              tabCharacterid={tabCharacterid}
+              tabComicid={tabComicid}
+              count={count}
             />
           }
         />
@@ -51,12 +94,17 @@ function App() {
           path="/comics"
           element={
             <Comics
+              setFav={setFav}
               search={search}
               setCount={setCount}
               page={page}
               getCookie={getCookie}
               cookie={cookie}
               setDisplay={setDisplay}
+              tabCharacterid={tabCharacterid}
+              tabComicid={tabComicid}
+              setPage={setPage}
+              count={count}
             />
           }
         />
@@ -72,6 +120,9 @@ function App() {
               getCookie={getCookie}
               cookie={cookie}
               setDisplay={setDisplay}
+              tabCharacterid={tabCharacterid}
+              tabComicid={tabComicid}
+              setFav={setFav}
             />
           }
         />
@@ -79,11 +130,10 @@ function App() {
           path="/favorites"
           element={
             <Favorites
-              search={search}
-              setCount={setCount}
-              page={page}
-              getCookie={getCookie}
-              cookie={cookie}
+              setFav={setFav}
+              isLoading={isLoading}
+              dataFavoritesCharacter={dataFavoritesCharacter}
+              dataFavoritesComic={dataFavoritesComic}
             />
           }
         />

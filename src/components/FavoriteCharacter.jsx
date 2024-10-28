@@ -10,15 +10,23 @@ const FavoriteCharacter = ({
   id,
   title,
   setDisplay,
+  tabCharacterid,
+  tabComicid,
+  setFav,
 }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  let includeCharacter = "";
+  let includeComic = "";
   const onClick = (event) => {
     event.stopPropagation();
+    setFav(id);
     getCookie();
-
+    includeCharacter = tabCharacterid.includes(id);
+    includeComic = tabComicid.includes(id);
     if (cookie) {
-      if (name) {
+      if (name && !includeCharacter) {
         getCookie();
+
         const fetchdata = async () => {
           const { data } = await axios.post(
             "https://site--marvel-backend--7pddggdgmnqf.code.run/favorite/characters",
@@ -32,19 +40,21 @@ const FavoriteCharacter = ({
         };
         fetchdata();
       } else {
-        const fetchdata = async () => {
-          getCookie();
-          const { data } = await axios.post(
-            "https://site--marvel-backend--7pddggdgmnqf.code.run/favorite/comics",
-            { picture: picture, title: title, id: id, token: cookie },
-            {
-              headers: {
-                Authorization: `Bearer ${cookie}`,
-              },
-            }
-          );
-        };
-        fetchdata();
+        if (title && !includeComic) {
+          const fetchdata = async () => {
+            getCookie();
+            const { data } = await axios.post(
+              "https://site--marvel-backend--7pddggdgmnqf.code.run/favorite/comics",
+              { picture: picture, title: title, id: id, token: cookie },
+              {
+                headers: {
+                  Authorization: `Bearer ${cookie}`,
+                },
+              }
+            );
+          };
+          fetchdata();
+        }
       }
     } else {
       setDisplay(3);

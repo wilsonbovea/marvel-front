@@ -9,6 +9,11 @@ const Characters = ({
   getCookie,
   cookie,
   setDisplay,
+  setPage,
+  tabCharacterid,
+  tabComicid,
+  count,
+  setFav,
 }) => {
   const [dataCharacters, setDataCharacters] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -30,13 +35,16 @@ const Characters = ({
           filters
       );
       setCount(Math.ceil(data.count / 100));
+
       setDataCharacters(data.results);
     };
-
+    if (count < page) {
+      setPage(1);
+    }
     fetchData();
     setIsLoading(false);
     getCookie();
-  }, [page, search, cookie]);
+  }, [search, page, cookie, count]);
   return isLoading ? (
     <div className="loader"></div>
   ) : (
@@ -67,6 +75,7 @@ const Characters = ({
                 </NavLink>
                 <FavoriteCharacter
                   getCookie={getCookie}
+                  setFav={setFav}
                   picture={
                     character.thumbnail.path +
                     "." +
@@ -76,6 +85,8 @@ const Characters = ({
                   id={character._id}
                   cookie={cookie}
                   setDisplay={setDisplay}
+                  tabCharacterid={tabCharacterid}
+                  tabComicid={tabComicid}
                 />
               </div>
             );

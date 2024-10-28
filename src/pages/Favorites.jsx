@@ -1,31 +1,14 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-const Favorites = ({ search, cookie, getCookie }) => {
-  const [dataFavoritesCharacter, setDataFavoritesCharacter] = useState([]);
-  const [dataFavoritesComic, setDataFavoritesComic] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+const Favorites = ({
+  dataFavoritesComic,
+  dataFavoritesCharacter,
 
+  isLoading,
+  setFav,
+}) => {
   useEffect(() => {
-    getCookie();
-    const fetchData = async () => {
-      const { data } = await axios.get(
-        "https://site--marvel-backend--7pddggdgmnqf.code.run/favorite/list?" +
-          "token=" +
-          cookie,
-        {
-          headers: {
-            authorization: `Bearer ${cookie}`,
-          },
-        }
-      );
-
-      setDataFavoritesCharacter(data.character);
-      setDataFavoritesComic(data.comic);
-    };
-
-    fetchData();
-    setIsLoading(false);
-  }, [cookie]);
+    setFav("eaeazer");
+  }, []);
   return isLoading ? (
     <div className="loader"></div>
   ) : (

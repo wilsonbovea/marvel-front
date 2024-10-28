@@ -2,7 +2,14 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import FavoriteCharacter from "../../components/FavoriteCharacter";
-const ComicsIdComic = ({ getCookie, cookie, setDisplay }) => {
+const ComicsIdComic = ({
+  getCookie,
+  cookie,
+  setDisplay,
+  tabCharacterid,
+  tabComicid,
+  setFav,
+}) => {
   const [dataComicsIdComic, setDataComicsIdComic] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [urlImg, setUrlImg] = useState("");
@@ -36,12 +43,15 @@ const ComicsIdComic = ({ getCookie, cookie, setDisplay }) => {
           <div className="comicId-img">
             <img src={urlImg} alt="" />
             <FavoriteCharacter
+              setFav={setFav}
               getCookie={getCookie}
               picture={urlImg}
               title={dataComicsIdComic.title}
               id={dataComicsIdComic._id}
               cookie={cookie}
               setDisplay={setDisplay}
+              tabCharacterid={tabCharacterid}
+              tabComicid={tabComicid}
             />
           </div>
 
