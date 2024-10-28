@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import FavoriteCharacter from "../../components/FavoriteCharacter";
+import FavoritesDelete from "../../components/FavoritesDelete";
 const ComicsIdComic = ({
   getCookie,
   cookie,
@@ -42,17 +43,30 @@ const ComicsIdComic = ({
         <div key={dataComicsIdComic._id} className="comicId  relative">
           <div className="comicId-img">
             <img src={urlImg} alt="" />
-            <FavoriteCharacter
-              setFav={setFav}
-              getCookie={getCookie}
-              picture={urlImg}
-              title={dataComicsIdComic.title}
-              id={dataComicsIdComic._id}
-              cookie={cookie}
-              setDisplay={setDisplay}
-              tabCharacterid={tabCharacterid}
-              tabComicid={tabComicid}
-            />
+            {!tabComicid.includes(dataComicsIdComic._id) ? (
+              <FavoriteCharacter
+                setFav={setFav}
+                getCookie={getCookie}
+                picture={urlImg}
+                title={dataComicsIdComic.title}
+                id={dataComicsIdComic._id}
+                cookie={cookie}
+                setDisplay={setDisplay}
+                tabCharacterid={tabCharacterid}
+                tabComicid={tabComicid}
+              />
+            ) : (
+              <FavoritesDelete
+                setFav={setFav}
+                getCookie={getCookie}
+                title={dataComicsIdComic.title}
+                id={dataComicsIdComic._id}
+                cookie={cookie}
+                setDisplay={setDisplay}
+                tabCharacterid={tabCharacterid}
+                tabComicid={tabComicid}
+              />
+            )}
           </div>
 
           <div className="description-comic">

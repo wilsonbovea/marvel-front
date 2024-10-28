@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import FavoriteCharacter from "../../components/FavoriteCharacter";
+import FavoritesDelete from "../../components/FavoritesDelete";
 const Comics = ({
   search,
   setCount,
@@ -14,6 +15,7 @@ const Comics = ({
   setPage,
   count,
   setFav,
+  fav,
 }) => {
   const [dataComics, setDataComics] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -43,7 +45,7 @@ const Comics = ({
     fetchData();
     setIsLoading(false);
     getCookie();
-  }, [search, page, count]);
+  }, [search, page, count, fav]);
   return isLoading ? (
     <div className="loader"></div>
   ) : (
@@ -52,7 +54,11 @@ const Comics = ({
         <section className="all-characters container">
           {dataComics.map((comicsDetails) => {
             return (
-              <div className="relative" key={comicsDetails._id}>
+              <div
+                onClick={() => setFav(comicsDetails._id)}
+                className="relative"
+                key={comicsDetails._id}
+              >
                 <Link
                   to={"/comic/" + comicsDetails._id}
                   className="comics-all link"
@@ -73,21 +79,36 @@ const Comics = ({
                     <p>DESCRIPTION</p>
                   </div>
                 </Link>
-                <FavoriteCharacter
-                  getCookie={getCookie}
-                  setFav={setFav}
-                  picture={
-                    comicsDetails.thumbnail.path +
-                    "." +
-                    comicsDetails.thumbnail.extension
-                  }
-                  title={comicsDetails.title}
-                  id={comicsDetails._id}
-                  cookie={cookie}
-                  setDisplay={setDisplay}
-                  tabCharacterid={tabCharacterid}
-                  tabComicid={tabComicid}
-                />
+                {!tabComicid.includes(comicsDetails._id) ? (
+                  <FavoriteCharacter
+                    getCookie={getCookie}
+                    setFav={setFav}
+                    picture={
+                      comicsDetails.thumbnail.path +
+                      "." +
+                      comicsDetails.thumbnail.extension
+                    }
+                    fav={fav}
+                    title={comicsDetails.title}
+                    id={comicsDetails._id}
+                    cookie={cookie}
+                    setDisplay={setDisplay}
+                    tabCharacterid={tabCharacterid}
+                    tabComicid={tabComicid}
+                    key={comicsDetails._id}
+                  />
+                ) : (
+                  <FavoritesDelete
+                    getCookie={getCookie}
+                    setFav={setFav}
+                    title={comicsDetails.title}
+                    id={comicsDetails._id}
+                    cookie={cookie}
+                    setDisplay={setDisplay}
+                    tabCharacterid={tabCharacterid}
+                    tabComicid={tabComicid}
+                  />
+                )}
               </div>
             );
           })}

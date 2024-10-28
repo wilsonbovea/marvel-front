@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 
 import axios from "axios";
-
-const FavoriteCharacter = ({
+const FavoritesDelete = ({
   cookie,
   getCookie,
   picture,
@@ -27,13 +26,13 @@ const FavoriteCharacter = ({
     includeCharacter = tabCharacterid.includes(id);
     includeComic = tabComicid.includes(id);
     if (cookie) {
-      if (name && !includeCharacter) {
+      if (name && includeCharacter) {
         getCookie();
 
         const fetchdata = async () => {
           const { data } = await axios.post(
-            "https://site--marvel-backend--7pddggdgmnqf.code.run/favorite/characters",
-            { picture: picture, name: name, id: id, token: cookie },
+            "https://site--marvel-backend--7pddggdgmnqf.code.run/favorite/delete",
+            { id: id, token: cookie },
             {
               headers: {
                 Authorization: `Bearer ${cookie}`,
@@ -44,12 +43,13 @@ const FavoriteCharacter = ({
         };
         fetchdata();
       } else {
-        if (title && !includeComic) {
+        if (title && includeComic) {
+          console.log(">>>>>> comic delete");
           const fetchdata = async () => {
             getCookie();
             const { data } = await axios.post(
-              "https://site--marvel-backend--7pddggdgmnqf.code.run/favorite/comics",
-              { picture: picture, title: title, id: id, token: cookie },
+              "https://site--marvel-backend--7pddggdgmnqf.code.run/favorite/delete",
+              { id: id, token: cookie },
               {
                 headers: {
                   Authorization: `Bearer ${cookie}`,
@@ -57,6 +57,7 @@ const FavoriteCharacter = ({
               }
             );
             setFav(data);
+            console.log("in fetchdata");
           };
           fetchdata();
         }
@@ -66,10 +67,10 @@ const FavoriteCharacter = ({
     }
   };
   return (
-    <div className={"add-fav"} onClick={onClick}>
-      <button>add</button>
+    <div className={"add-fav-delete"} onClick={onClick}>
+      <button>added</button>
     </div>
   );
 };
 
-export default FavoriteCharacter;
+export default FavoritesDelete;

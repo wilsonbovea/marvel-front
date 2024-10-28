@@ -29,37 +29,39 @@ function App() {
     setCookie(token);
   };
   const [isLoading, setIsLoading] = useState(true);
-  console.log(tabCharacterid);
+  console.log(fav);
   useEffect(() => {
     getCookie();
-    const fetchData = async () => {
-      const { data } = await axios.get(
-        "https://site--marvel-backend--7pddggdgmnqf.code.run/favorite/list?" +
-          "token=" +
-          cookie,
-        {
-          headers: {
-            authorization: `Bearer ${cookie}`,
-          },
-        }
-      );
+    if (cookie) {
+      const fetchData = async () => {
+        const { data } = await axios.get(
+          "https://site--marvel-backend--7pddggdgmnqf.code.run/favorite/list?" +
+            "token=" +
+            cookie,
+          {
+            headers: {
+              authorization: `Bearer ${cookie}`,
+            },
+          }
+        );
 
-      setDataFavoritesCharacter(data.character);
-      setDataFavoritesComic(data.comic);
+        setDataFavoritesCharacter(data.character);
+        setDataFavoritesComic(data.comic);
 
-      data.character.map((event) => {
-        tabCharacterid.push(event.idCharacter);
-      });
+        data.character.map((event) => {
+          tabCharacterid.push(event.idCharacter);
+        });
 
-      setTabCharacterid(tabCharacterid);
-      data.comic.map((event) => {
-        tabComicid.push(event.idComic);
-      });
-      setTabComicid(tabComicid);
-    };
+        setTabCharacterid(tabCharacterid);
+        data.comic.map((event) => {
+          tabComicid.push(event.idComic);
+        });
+        setTabComicid(tabComicid);
+      };
 
-    fetchData();
-    setIsLoading(false);
+      fetchData();
+      setIsLoading(false);
+    }
   }, [cookie, fav]);
   return (
     <Router>
@@ -95,6 +97,7 @@ function App() {
           element={
             <Comics
               setFav={setFav}
+              fav={fav}
               search={search}
               setCount={setCount}
               page={page}

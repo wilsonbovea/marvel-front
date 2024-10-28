@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import FavoriteCharacter from "../../components/FavoriteCharacter";
+import FavoritesDelete from "../../components/FavoritesDelete";
 const Characters = ({
   search,
   setCount,
@@ -73,21 +74,35 @@ const Characters = ({
                     <p>{character.description}</p>
                   </div>
                 </NavLink>
-                <FavoriteCharacter
-                  getCookie={getCookie}
-                  setFav={setFav}
-                  picture={
-                    character.thumbnail.path +
-                    "." +
-                    character.thumbnail.extension
-                  }
-                  name={character.name}
-                  id={character._id}
-                  cookie={cookie}
-                  setDisplay={setDisplay}
-                  tabCharacterid={tabCharacterid}
-                  tabComicid={tabComicid}
-                />
+
+                {!tabCharacterid.includes(character._id) ? (
+                  <FavoriteCharacter
+                    getCookie={getCookie}
+                    setFav={setFav}
+                    picture={
+                      character.thumbnail.path +
+                      "." +
+                      character.thumbnail.extension
+                    }
+                    name={character.name}
+                    id={character._id}
+                    cookie={cookie}
+                    setDisplay={setDisplay}
+                    tabCharacterid={tabCharacterid}
+                    tabComicid={tabComicid}
+                  />
+                ) : (
+                  <FavoritesDelete
+                    getCookie={getCookie}
+                    setFav={setFav}
+                    name={character.name}
+                    id={character._id}
+                    cookie={cookie}
+                    setDisplay={setDisplay}
+                    tabCharacterid={tabCharacterid}
+                    tabComicid={tabComicid}
+                  />
+                )}
               </div>
             );
           })}
