@@ -28,10 +28,9 @@ const FavoritesDelete = ({
       if (name && includeCharacter) {
         const fetchdata = async () => {
           getCookie();
-          // https://site--marvel-backend--7pddggdgmnqf.code.run/
 
           const { data } = await axios.post(
-            "http://localhost:3000/favorite/delete/character",
+            "https://site--marvel-backend--7pddggdgmnqf.code.run/favorite/delete/character",
             { id: id, token: cookie },
             {
               headers: {
@@ -51,7 +50,7 @@ const FavoritesDelete = ({
           const fetchdata = async () => {
             getCookie();
             const { data } = await axios.post(
-              "http://localhost:3000/favorite/delete/comic",
+              "https://site--marvel-backend--7pddggdgmnqf.code.run/favorite/delete/comic",
               { id: id, token: cookie },
               {
                 headers: {
