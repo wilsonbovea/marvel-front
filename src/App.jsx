@@ -29,7 +29,7 @@ function App() {
     setCookie(token);
   };
   const [isLoading, setIsLoading] = useState(true);
-  console.log(fav);
+
   useEffect(() => {
     getCookie();
     if (cookie) {
@@ -49,12 +49,16 @@ function App() {
         setDataFavoritesComic(data.comic);
 
         data.character.map((event) => {
-          tabCharacterid.push(event.idCharacter);
+          if (!tabCharacterid.includes(event.idCharacter)) {
+            tabCharacterid.push(event.idCharacter);
+          }
         });
-
         setTabCharacterid(tabCharacterid);
+
         data.comic.map((event) => {
-          tabComicid.push(event.idComic);
+          if (!tabComicid.includes(event.idComic)) {
+            tabComicid.push(event.idComic);
+          }
         });
         setTabComicid(tabComicid);
       };
@@ -88,6 +92,8 @@ function App() {
               setDisplay={setDisplay}
               tabCharacterid={tabCharacterid}
               tabComicid={tabComicid}
+              setTabCharacterid={setTabCharacterid}
+              setTabComicid={setTabComicid}
               count={count}
             />
           }
@@ -106,6 +112,8 @@ function App() {
               setDisplay={setDisplay}
               tabCharacterid={tabCharacterid}
               tabComicid={tabComicid}
+              setTabCharacterid={setTabCharacterid}
+              setTabComicid={setTabComicid}
               setPage={setPage}
               count={count}
             />
@@ -125,6 +133,8 @@ function App() {
               setDisplay={setDisplay}
               tabCharacterid={tabCharacterid}
               tabComicid={tabComicid}
+              setTabCharacterid={setTabCharacterid}
+              setTabComicid={setTabComicid}
               setFav={setFav}
             />
           }

@@ -18,7 +18,9 @@ const Header = ({ setDisplay, setSearch, count, page, setPage, cookie }) => {
               id="search"
               placeholder="Rechercher"
               onChange={(event) => {
-                setSearch(event.target.value);
+                let value = event.target.value;
+                value.replace(" ", "%");
+                setSearch(value);
               }}
             />
           </label>
@@ -40,7 +42,10 @@ const Header = ({ setDisplay, setSearch, count, page, setPage, cookie }) => {
               </Link>
             )}
 
-            <button onClick={() => setDisplay(1)} className="link">
+            <button
+              onClick={() => setDisplay(1)}
+              className={cookie ? "connected" : "link"}
+            >
               Connexion
             </button>
           </div>

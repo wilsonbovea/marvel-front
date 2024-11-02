@@ -4,7 +4,6 @@ import axios from "axios";
 const FavoritesDelete = ({
   cookie,
   getCookie,
-  picture,
   name,
   id,
   title,
@@ -12,8 +11,8 @@ const FavoritesDelete = ({
   tabCharacterid,
   tabComicid,
   setFav,
-  key,
-  fav,
+  setTabCharacterid,
+  setTabComicid,
 }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   let includeCharacter = "";
@@ -27,11 +26,12 @@ const FavoritesDelete = ({
     includeComic = tabComicid.includes(id);
     if (cookie) {
       if (name && includeCharacter) {
-        getCookie();
-
         const fetchdata = async () => {
+          getCookie();
+          // https://site--marvel-backend--7pddggdgmnqf.code.run/
+
           const { data } = await axios.post(
-            "https://site--marvel-backend--7pddggdgmnqf.code.run/favorite/delete",
+            "http://localhost:3000/favorite/delete/character",
             { id: id, token: cookie },
             {
               headers: {
@@ -40,15 +40,18 @@ const FavoritesDelete = ({
             }
           );
           setFav(data);
+
+          const index = tabCharacterid.indexOf(id);
+          tabCharacterid.splice(index, 1);
+          setTabCharacterid(tabCharacterid);
         };
         fetchdata();
       } else {
         if (title && includeComic) {
-          console.log(">>>>>> comic delete");
           const fetchdata = async () => {
             getCookie();
             const { data } = await axios.post(
-              "https://site--marvel-backend--7pddggdgmnqf.code.run/favorite/delete",
+              "http://localhost:3000/favorite/delete/comic",
               { id: id, token: cookie },
               {
                 headers: {
@@ -57,7 +60,10 @@ const FavoritesDelete = ({
               }
             );
             setFav(data);
-            console.log("in fetchdata");
+            const index = tabComicid.indexOf(id);
+            tabComicid.splice(index, 1);
+            setTabComicid(tabComicid);
+            console.log("in fetchdata comics");
           };
           fetchdata();
         }

@@ -6,9 +6,9 @@ const Favorites = ({
   isLoading,
   setFav,
 }) => {
-  useEffect(() => {
-    setFav("eaeazer");
-  }, []);
+  // useEffect(() => {
+  //   setFav("eaeazer");
+  // }, []);
   return isLoading ? (
     <div className="loader"></div>
   ) : (

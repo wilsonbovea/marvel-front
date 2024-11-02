@@ -15,6 +15,8 @@ const Characters = ({
   tabComicid,
   count,
   setFav,
+  setTabCharacterid,
+  setTabComicid,
 }) => {
   const [dataCharacters, setDataCharacters] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -84,6 +86,8 @@ const Characters = ({
                       "." +
                       character.thumbnail.extension
                     }
+                    setTabCharacterid={setTabCharacterid}
+                    setTabComicid={setTabComicid}
                     name={character.name}
                     id={character._id}
                     cookie={cookie}
@@ -95,6 +99,8 @@ const Characters = ({
                   <FavoritesDelete
                     getCookie={getCookie}
                     setFav={setFav}
+                    setTabCharacterid={setTabCharacterid}
+                    setTabComicid={setTabComicid}
                     name={character.name}
                     id={character._id}
                     cookie={cookie}

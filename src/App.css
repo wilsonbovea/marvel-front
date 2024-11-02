@@ -216,7 +216,7 @@ header {
   height: 100%;
   align-items: center;
 }
-.buttons-header .link {
+.link {
   background-color: #f4171f;
   color: white;
   box-shadow: 0px 8px 10px black;
@@ -224,7 +224,16 @@ header {
   border-radius: 5px;
   height: 30px;
 }
-.buttons-header .link:hover {
+.connected {
+  background-color: green;
+  color: white;
+  box-shadow: 0px 8px 10px black;
+  padding: 5px;
+  border-radius: 5px;
+  height: 30px;
+}
+.link:hover,
+.connected:hover {
   box-shadow: 0px 0px 5px gold;
 }
 /*PAGE /comic/:comicId */

@@ -45,73 +45,76 @@ const Comics = ({
     fetchData();
     setIsLoading(false);
     getCookie();
-  }, [search, page, count, fav]);
+  }, [search, page, count, cookie]);
   return isLoading ? (
     <div className="loader"></div>
   ) : (
     <main className="main-characters">
       <div className="opac-main">
         <section className="all-characters container">
-          {dataComics.map((comicsDetails) => {
-            return (
-              <div
-                onClick={() => setFav(comicsDetails._id)}
-                className="relative"
-                key={comicsDetails._id}
-              >
-                <Link
-                  to={"/comic/" + comicsDetails._id}
-                  className="comics-all link"
+          {dataComics &&
+            dataComics.map((comicsDetails) => {
+              return (
+                <div
+                  onClick={() => setFav(comicsDetails._id)}
+                  className="relative"
+                  key={comicsDetails._id}
                 >
-                  <div className="comics-img">
-                    <img
-                      src={
+                  <Link
+                    to={"/comic/" + comicsDetails._id}
+                    className="comics-all link"
+                  >
+                    <div className="comics-img">
+                      <img
+                        src={
+                          comicsDetails.thumbnail.path +
+                          "." +
+                          comicsDetails.thumbnail.extension
+                        }
+                        alt={comicsDetails.title}
+                      />
+                    </div>
+                    <h3>{comicsDetails.title}</h3>
+                    <p className="display-hide-2">
+                      {comicsDetails.description}
+                    </p>
+                    <div className="display-hide">
+                      <p>DESCRIPTION</p>
+                    </div>
+                  </Link>
+                  {!tabComicid.includes(comicsDetails._id) ? (
+                    <FavoriteCharacter
+                      getCookie={getCookie}
+                      setFav={setFav}
+                      picture={
                         comicsDetails.thumbnail.path +
                         "." +
                         comicsDetails.thumbnail.extension
                       }
-                      alt={comicsDetails.title}
+                      fav={fav}
+                      title={comicsDetails.title}
+                      id={comicsDetails._id}
+                      cookie={cookie}
+                      setDisplay={setDisplay}
+                      tabCharacterid={tabCharacterid}
+                      tabComicid={tabComicid}
+                      key={comicsDetails._id}
                     />
-                  </div>
-                  <h3>{comicsDetails.title}</h3>
-                  <p className="display-hide-2">{comicsDetails.description}</p>
-                  <div className="display-hide">
-                    <p>DESCRIPTION</p>
-                  </div>
-                </Link>
-                {!tabComicid.includes(comicsDetails._id) ? (
-                  <FavoriteCharacter
-                    getCookie={getCookie}
-                    setFav={setFav}
-                    picture={
-                      comicsDetails.thumbnail.path +
-                      "." +
-                      comicsDetails.thumbnail.extension
-                    }
-                    fav={fav}
-                    title={comicsDetails.title}
-                    id={comicsDetails._id}
-                    cookie={cookie}
-                    setDisplay={setDisplay}
-                    tabCharacterid={tabCharacterid}
-                    tabComicid={tabComicid}
-                    key={comicsDetails._id}
-                  />
-                ) : (
-                  <FavoritesDelete
-                    getCookie={getCookie}
-                    setFav={setFav}
-                    title={comicsDetails.title}
-                    id={comicsDetails._id}
-                    cookie={cookie}
-                    setDisplay={setDisplay}
-                    tabCharacterid={tabCharacterid}
-                    tabComicid={tabComicid}
-                  />
-                )}
-              </div>
-            );
-          })}
+                  ) : (
+                    <FavoritesDelete
+                      getCookie={getCookie}
+                      setFav={setFav}
+                      title={comicsDetails.title}
+                      id={comicsDetails._id}
+                      cookie={cookie}
+                      setDisplay={setDisplay}
+                      tabCharacterid={tabCharacterid}
+                      tabComicid={tabComicid}
+                    />
+                  )}
+                </div>
+              );
+            })}
         </section>
       </div>
     </main>
