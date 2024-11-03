@@ -54,64 +54,65 @@ const Characters = ({
     <main className="main-characters">
       <div className="opac-main">
         <section className="all-characters">
-          {dataCharacters.map((character) => {
-            return (
-              <div className="relative" key={character._id}>
-                <NavLink
-                  to={"/comics/" + character._id}
-                  className="characters link"
-                >
-                  <div className="characters-img-div">
-                    <img
-                      src={
+          {dataCharacters &&
+            dataCharacters.map((character) => {
+              return (
+                <div className="relative" key={character._id}>
+                  <NavLink
+                    to={"/comics/" + character._id}
+                    className="characters link"
+                  >
+                    <div className="characters-img-div">
+                      <img
+                        src={
+                          character.thumbnail.path +
+                          "." +
+                          character.thumbnail.extension
+                        }
+                        alt={"character " + character.name}
+                      />
+                    </div>
+                    <div>
+                      <h3>{character.name}</h3>
+                      <p>{character.description}</p>
+                    </div>
+                  </NavLink>
+
+                  {!tabCharacterid.includes(character._id) ? (
+                    <FavoriteCharacter
+                      getCookie={getCookie}
+                      setFav={setFav}
+                      picture={
                         character.thumbnail.path +
                         "." +
                         character.thumbnail.extension
                       }
-                      alt={"character " + character.name}
+                      setTabCharacterid={setTabCharacterid}
+                      setTabComicid={setTabComicid}
+                      name={character.name}
+                      id={character._id}
+                      cookie={cookie}
+                      setDisplay={setDisplay}
+                      tabCharacterid={tabCharacterid}
+                      tabComicid={tabComicid}
                     />
-                  </div>
-                  <div>
-                    <h3>{character.name}</h3>
-                    <p>{character.description}</p>
-                  </div>
-                </NavLink>
-
-                {!tabCharacterid.includes(character._id) ? (
-                  <FavoriteCharacter
-                    getCookie={getCookie}
-                    setFav={setFav}
-                    picture={
-                      character.thumbnail.path +
-                      "." +
-                      character.thumbnail.extension
-                    }
-                    setTabCharacterid={setTabCharacterid}
-                    setTabComicid={setTabComicid}
-                    name={character.name}
-                    id={character._id}
-                    cookie={cookie}
-                    setDisplay={setDisplay}
-                    tabCharacterid={tabCharacterid}
-                    tabComicid={tabComicid}
-                  />
-                ) : (
-                  <FavoritesDelete
-                    getCookie={getCookie}
-                    setFav={setFav}
-                    setTabCharacterid={setTabCharacterid}
-                    setTabComicid={setTabComicid}
-                    name={character.name}
-                    id={character._id}
-                    cookie={cookie}
-                    setDisplay={setDisplay}
-                    tabCharacterid={tabCharacterid}
-                    tabComicid={tabComicid}
-                  />
-                )}
-              </div>
-            );
-          })}
+                  ) : (
+                    <FavoritesDelete
+                      getCookie={getCookie}
+                      setFav={setFav}
+                      setTabCharacterid={setTabCharacterid}
+                      setTabComicid={setTabComicid}
+                      name={character.name}
+                      id={character._id}
+                      cookie={cookie}
+                      setDisplay={setDisplay}
+                      tabCharacterid={tabCharacterid}
+                      tabComicid={tabComicid}
+                    />
+                  )}
+                </div>
+              );
+            })}
         </section>
       </div>
     </main>
